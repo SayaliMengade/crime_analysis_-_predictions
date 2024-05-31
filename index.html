@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Analysis and Prediction</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #4CAF50;
+            position: relative;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            display: none;
+            padding: 20px;
+        }
+        .show {
+            display: block;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .feature {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-right: 2px;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        .feature img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: bottom;
+            padding: 20px;
+            width: 100%;
+
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input[type="text"], .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .login-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+        .upload-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #28a745;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #218838;
+        }
+        .file-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Crime Analysis and Prediction</h1>
+            <a href="#" class="cta-button" onclick="showMainContent()">Get Started</a>
+        </div>
+
+    </header>
+    <div class="container main-content" id="main-content">
+        <div class="features">
+            <div class="feature">
+                <h2>Crime Analysis</h2>
+                <p>Systematic study of crime patterns,trends,behaviors to improve public safety.</p>
+                <a href="https://en.m.wikipedia.org/wiki/crime_statistics" class="cta-button" onclick="showMainContent()">Explore</a>
+            </div>
+            <div class="feature">
+                <h2>What is crime</h2>
+                <p>Unlawful act punishable by a state or other authority.</p>
+                <a href="https://en.m.wikipedia.org/wiki/Crime" class="cta-button" onclick="showMainContent()">Explore</a>
+            </div>
+            <div class="feature">
+                <h2>Crime in India</h2>
+                <p>Wide range of offenses, from petty theft to serious crime such as murder.</p>
+                <a href="https://en.m.wikipedia.org/wiki/Crime_in_India" class="cta-button" onclick="showMainContent()">Explore</a>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Year-wise Crime Prediction</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <!-- <h2>Upload CSV File</h2>
+
+                    <input type="file" name="file" accept=".csv">
+                    <button type="submit">Upload</button> 
+
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" id="murder" name="murder"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="attempt_to_murder">Attempt to Murder:</label>
+                    <input type="text" id="attempt_to_murder" name="attempt_to_murder"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="culpable_homicide">Culpable Homicide not amounting to Murder:</label>
+                        <input type="text" id="culpable_homicide" name="culpable_homicide"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="hit_and_run">Hit and Run:</label>
+                        <input type="text" id="hit_and_run" name="hit_and_run"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="rape">Rape:</label>
+                        <input type="text" id="rape" name="rape"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="kidnapping_and_abduction">Kidnapping and Abduction:</label>
+                        <input type="text" id="kidnapping_and_abduction" name="kidnapping_and_abduction"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="arson">Arson:</label>
+                        <input type="text" id="arson" name="arson"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexual_harassment">Sexual Harassment:</label>
+                        <input type="text" id="sexual_harassment" name="sexual_harassment"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="grievous_hurt">Grievous Hurt:</label>
+                        <input type="text" id="grievous_hurt" name="grievous_hurt"><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="causing_death_by_negligence">Causing Death by Negligence:</label>
+                        <input type="text" id="causing_death_by_negligence" name="causing_death_by_negligence"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="dowry_deaths">Dowry Deaths:</label>
+                        <input type="text" id="dowry_deaths" name="dowry_deaths"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="theft">Theft:</label>
+                    <input type="text" id="theft" name="theft"><br>
+                    </div>
+                    <div class="form-group">-->
+                
+                    <div class="form-group">
+                        <form id="crimeForm">
+                            <label for="year">Year:</label>
+                            <select id="year" name="year">
+                                <option value="">select</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                
+                            <label for="crime">Crime:</label>
+                            <select id="crime" name="crime">
+                                <option value="">select</option>
+                                <option value="murder">Murder</option>
+                                <option value="attempt_to_murder">Attempt to Murder</option>
+                                <option value="sexual_harassment">Sexual Harassment</option>
+                                <option value="rape">Rape</option>
+                                <option value="theft">Theft</option>
+                                <option value="causing_death_by_negligence">causing_death_by_negligence</option>
+                                <option value="culpable_homicide">culpable_homicide</option>
+                                <option value="kidnapping_and_abduction">kidnapping_and_abduction</option>
+                                <option value="arson">arson</option>
+                                <option value="grievous_hurt">grievous_hurt</option>
+                                <option value="dowry_deaths">dowry_deaths</option>
+                        </select>
+                    </div>
+
+<!-- 
+                    88888 -->
+
+                    <!-- <label for="murder">Murder:</label>
+                    <input type="text" id="murder" name="murder"><br>
+            
+                    <label for="attempt_to_murder">Attempt to Murder:</label>
+                    <input type="text" id="attempt_to_murder" name="attempt_to_murder"><br> -->
+            
+                    <!-- <label for="culpable_homicide">Culpable Homicide not amounting to Murder:</label>
+                    <input type="text" id="culpable_homicide" name="culpable_homicide"><br>
+            
+                    <label for="hit_and_run">Hit and Run:</label>
+                    <input type="text" id="hit_and_run" name="hit_and_run"><br>
+            
+                    <label for="rape">Rape:</label>
+                    <input type="text" id="rape" name="rape"><br>
+            
+                    <label for="kidnapping_and_abduction">Kidnapping and Abduction:</label>
+                    <input type="text" id="kidnapping_and_abduction" name="kidnapping_and_abduction"><br>
+                    <label for="arson">Arson:</label>
+                    <input type="text" id="arson" name="arson"><br> -->
+            
+                    <!-- <label for="sexual_harassment">Sexual Harassment:</label>
+                    <input type="text" id="sexual_harassment" name="sexual_harassment"><br>
+            
+                    <label for="grievous_hurt">Grievous Hurt:</label>
+                    <input type="text" id="grievous_hurt" name="grievous_hurt"><br>
+            
+                    <label for="causing_death_by_negligence">Causing Death by Negligence:</label>
+                    <input type="text" id="causing_death_by_negligence" name="causing_death_by_negligence"><br>
+            
+                    <label for="dowry_deaths">Dowry Deaths:</label>
+                    <input type="text" id="dowry_deaths" name="dowry_deaths"><br>
+            
+                    <label for="theft">Theft:</label>
+                    <input type="text" id="theft" name="theft"><br> -->
+            
+                    <input type="submit" value="Predict">            
+ 
+            </form>
+        </div>
+        <!-- <div>
+            <img id="chart" src="{{ url_for('static', filename='crime_chart.png') }}" alt="Crime Rate Chart">
+        </div>
+    
+
+    <footer>
+        <p>&copy; 2024 Crime Analysis and Prediction</p>
+    </footer>
+    <button type="button" onclick="fetchCrimeData()">Submit</button>
+    </form>
+
+    <canvas id="crimeChart" width="400" height="200"></canvas> -->
+    
+       
+
+    <script>
+        async function loadChart(data) {
+            const ctx = document.getElementById('crimeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Crime Rate',
+                        data: data.values,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => loadChart(data));
+    </script> 
+    
+    <script>
+        function showMainContent() {
+            document.getElementById("main-content").classList.add("show");
+        }
+        document.getElementById('file-input').addEventListener('change', function() {
+            document.getElementById('upload-form').submit();
+        });
+    </script>
+</body>
+</html>
