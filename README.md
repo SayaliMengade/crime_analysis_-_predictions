@@ -1,12 +1,12 @@
-# Crime Analysis and Prediction
+Crime_Analysis_and_Prediction
 
 This project focuses on analyzing and predicting crime rates using data from 2021 to 2022. By leveraging various machine learning algorithms and data visualization techniques, it aims to provide insights and future trends in crime patterns.
 
 ## Features
-**Data Analysis**: Utilizes historical crime data to uncover patterns and trends.
-**Prediction Models**: Implements machine learning algorithms such as Linear Regression, Time Series Forecasting, Logistic Regression, SVM, Decision Tree, and Random Forest to predict future crime rates.
-**Visualization**: Provides interactive visualizations to help understand the data and model predictions.
-**Web Application**: Built using Python, Flask, HTML, and a bit of JavaScript to create an interactive web interface for users to explore the data and predictions.
+- **Data Analysis**: Utilizes historical crime data to uncover patterns and trends.
+- **Prediction Models**: Implements machine learning algorithms such as Linear Regression, Time Series Forecasting, Logistic Regression, SVM, Decision Tree, and Random Forest to predict future crime rates.
+- **Visualization**: Provides interactive visualizations to help understand the data and model predictions.
+- **Web Application**: Built using Python, Flask, HTML, and a bit of JavaScript to create an interactive web interface for users to explore the data and predictions.
 
 ## Technologies Used
 
