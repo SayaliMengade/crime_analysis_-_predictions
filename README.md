@@ -43,8 +43,3 @@ The dataset includes crime records from various states in India for the years 20
 - `models/`: Machine learning models and scripts for training and prediction.
 - `data/`: The dataset used for analysis and prediction.
 
-## Acknowledgments
-
-Special thanks to Usha Mittal Institute of Technology for their support and resources.
-
-Feel free to explore the code, raise issues, and contribute to the project!
